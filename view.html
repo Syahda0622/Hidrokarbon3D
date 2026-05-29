@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HydroChem 3D Viewer</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Poppins,sans-serif;
+    background:#F8FAFC;
+}
+
+.viewer-section{
+    display:flex;
+    gap:50px;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:40px;
+    flex-wrap:wrap;
+}
+
+#molViewer{
+    width:600px;
+    height:600px;
+    background:white;
+    border-radius:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.viewer-info{
+    max-width:500px;
+}
+
+.viewer-info h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.viewer-info p{
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.button-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+button{
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    background:#635BFF;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+.rotate-btn{
+    width:100%;
+    background:#1E293B;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="viewer-section">
+
+    <div id="molViewer"></div>
+
+    <div class="viewer-info">
+
+        <h1 id="moleculeTitle">
+            Benzena (C₆H₆)
+        </h1>
+
+        <p id="moleculeDesc">
+            Benzena adalah hidrokarbon aromatik berbentuk cincin heksagonal.
+        </p>
+
+        <div class="button-grid">
+
+            <button onclick="loadMolecule('benzene')">Benzena</button>
+
+            <button onclick="loadMolecule('toluene')">Toluena</button>
+
+            <button onclick="loadMolecule('phenol')">Fenol</button>
+
+            <button onclick="loadMolecule('aniline')">Anilina</button>
+
+            <button onclick="loadMolecule('xylene')">Xilena</button>
+
+            <button onclick="loadMolecule('aspirin')">Aspirin</button>
+
+        </div>
+
+        <button class="rotate-btn" onclick="rotateMolecule()">
+            Putar Molekul
+        </button>
+
+    </div>
+
+</section>
+
+<script>
+
+let viewer;
+
+const molecules = {
+
+benzene:{
+title:"Benzena (C₆H₆)",
+description:"Benzena adalah hidrokarbon aromatik berbentuk cincin heksagonal.",
+data:`
+12
+Benzene
+C 1.396 0.000 0.000
+C 0.698 1.209 0.000
+C -0.698 1.209 0.000
+C -1.396 0.000 0.000
+C -0.698 -1.209 0.000
+C 0.698 -1.209 0.000
+H 2.479 0.000 0.000
+H 1.240 2.148 0.000
+H -1.240 2.148 0.000
+H -2.479 0.000 0.000
+H -1.240 -2.148 0.000
+H 1.240 -2.148 0.000
+`
+},
+
+toluene:{
+title:"Toluena (C₇H₈)",
+description:"Toluena digunakan sebagai pelarut industri.",
+data:`
+15
+Toluene
+C 0.000 1.396 0.000
+C 1.209 0.698 0.000
+C 1.209 -0.698 0.000
+C 0.000 -1.396 0.000
+C -1.209 -0.698 0.000
+C -1.209 0.698 0.000
+C 0.000 2.900 0.000
+H 2.148 1.240 0.000
+H 2.148 -1.240 0.000
+H 0.000 -2.479 0.000
+H -2.148 -1.240 0.000
+H -2.148 1.240 0.000
+H 0.000 3.500 1.000
+H 0.900 3.500 -0.500
+H -0.900 3.500 -0.500
+`
+},
+
+phenol:{
+title:"Fenol (C₆H₅OH)",
+description:"Fenol digunakan dalam antiseptik dan resin.",
+data:`
+13
+Phenol
+C 1.396 0.000 0.000
+C 0.698 1.209 0.000
+C -0.698 1.209 0.000
+C -1.396 0.000 0.000
+C -0.698 -1.209 0.000
+C 0.698 -1.209 0.000
+O 2.700 0.000 0.000
+H 3.200 0.500 0.000
+H 1.240 2.148 0.000
+H -1.240 2.148 0.000
+H -2.479 0.000 0.000
+H -1.240 -2.148 0.000
+H 1.240 -2.148 0.000
+`
+},
+
+aniline:{
+title:"Anilina (C₆H₅NH₂)",
+description:"Anilina digunakan dalam pembuatan pewarna.",
+data:`
+14
+Aniline
+C 1.396 0.000 0.000
+C 0.698 1.209 0.000
+C -0.698 1.209 0.000
+C -1.396 0.000 0.000
+C -0.698 -1.209 0.000
+C 0.698 -1.209 0.000
+N 2.700 0.000 0.000
+H 3.200 0.800 0.000
+H 3.200 -0.800 0.000
+H 1.240 2.148 0.000
+H -1.240 2.148 0.000
+H -2.479 0.000 0.000
+H -1.240 -2.148 0.000
+H 1.240 -2.148 0.000
+`
+},
+
+xylene:{
+title:"Xilena (C₈H₁₀)",
+description:"Xilena digunakan dalam industri cat dan tinta.",
+data:`
+18
+Xylene
+C 0.000 1.396 0.000
+C 1.209 0.698 0.000
+C 1.209 -0.698 0.000
+C 0.000 -1.396 0.000
+C -1.209 -0.698 0.000
+C -1.209 0.698 0.000
+C 0.000 2.900 0.000
+C 0.000 -2.900 0.000
+H 2.148 1.240 0.000
+H 2.148 -1.240 0.000
+H -2.148 -1.240 0.000
+H -2.148 1.240 0.000
+H 0.000 3.500 1.000
+H 0.900 3.500 -0.500
+H -0.900 3.500 -0.500
+H 0.000 -3.500 1.000
+H 0.900 -3.500 -0.500
+H -0.900 -3.500 -0.500
+`
+},
+
+aspirin:{
+title:"Aspirin",
+description:"Aspirin adalah obat anti nyeri dan anti inflamasi.",
+data:`
+21
+Aspirin
+C 1.396 0.000 0.000
+C 0.698 1.209 0.000
+C -0.698 1.209 0.000
+C -1.396 0.000 0.000
+C -0.698 -1.209 0.000
+C 0.698 -1.209 0.000
+C 2.800 0.000 0.000
+O 3.500 1.000 0.000
+O 3.500 -1.000 0.000
+C -2.800 0.000 0.000
+O -3.500 1.000 0.000
+C -3.500 -1.000 0.000
+H 1.240 2.148 0.000
+H -1.240 2.148 0.000
+H -1.240 -2.148 0.000
+H 1.240 -2.148 0.000
+H -4.500 -1.000 0.000
+H -3.000 -1.800 0.800
+H -3.000 -1.800 -0.800
+H 4.000 1.500 0.000
+H 4.000 -1.500 0.000
+`
+}
+
+};
+
+function initViewer(){
+
+viewer = $3Dmol.createViewer("molViewer",{
+    backgroundColor:"#ffffff"
+});
+
+loadMolecule("benzene");
+
+}
+
+function loadMolecule(name){
+
+const mol = molecules[name];
+
+document.getElementById("moleculeTitle").innerHTML = mol.title;
+
+document.getElementById("moleculeDesc").innerHTML = mol.description;
+
+viewer.clear();
+
+viewer.addModel(mol.data,"xyz");
+
+viewer.setStyle({},{
+    stick:{
+        radius:0.15
+    },
+    sphere:{
+        scale:0.3
+    }
+});
+
+viewer.zoomTo();
+viewer.render();
+
+}
+
+function rotateMolecule(){
+
+let angle = 0;
+
+const animation = setInterval(()=>{
+
+    viewer.rotate(5);
+    viewer.render();
+
+    angle += 5;
+
+    if(angle >= 360){
+        clearInterval(animation);
+    }
+
+},50);
+
+}
+
+initViewer();
+
+</script>
+
+</body>
+</html>

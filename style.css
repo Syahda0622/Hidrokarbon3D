@@ -1,0 +1,418 @@
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* BODY */
+
+body{
+    background:#F8FAFC;
+    color:#1E293B;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+    color:#635BFF;
+}
+
+nav ul{
+    display:flex;
+    gap:28px;
+    list-style:none;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:#1E293B;
+    font-size:16px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#635BFF;
+}
+
+/* HERO */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:50px;
+    padding:70px 8%;
+    background:linear-gradient(
+        135deg,
+        #EEF2FF,
+        #F8FAFC
+    );
+}
+
+.hero-text{
+    flex:1;
+}
+
+.hero-text h1{
+    font-size:52px;
+    line-height:1.2;
+    margin-bottom:20px;
+    color:#1E293B;
+}
+
+.hero-text span{
+    color:#635BFF;
+}
+
+.hero-text p{
+    font-size:18px;
+    line-height:1.7;
+    color:#475569;
+    margin-bottom:30px;
+}
+
+.hero-image{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.hero-image img{
+    width:85%;
+    max-width:420px;
+    animation:float 4s ease-in-out infinite;
+}
+
+/* FLOAT */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+/* BUTTON */
+
+.btn{
+    display:inline-block;
+    padding:14px 35px;
+    background:#635BFF;
+    color:white;
+    text-decoration:none;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(99,91,255,0.35);
+}
+
+/* SECTION */
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+    color:#1E293B;
+}
+
+/* MOLECULES */
+
+.molecules{
+    padding:80px 8%;
+}
+
+/* CARD CONTAINER */
+
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(
+        auto-fit,
+        minmax(280px,1fr)
+    );
+    gap:30px;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.06);
+    transition:0.3s;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height:600px;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    font-size:34px;
+    margin-bottom:16px;
+    text-align:center;
+    color:#1E293B;
+}
+
+.card p{
+    font-size:16px;
+    line-height:1.7;
+    color:#475569;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.card h4{
+    font-size:24px;
+    margin-bottom:12px;
+    color:#1E293B;
+    text-align:center;
+}
+
+.card ul{
+    margin-bottom:20px;
+    padding-left:20px;
+}
+
+.card ul li{
+    font-size:16px;
+    line-height:1.7;
+    color:#334155;
+    margin-bottom:8px;
+}
+
+.card .btn{
+    margin-top:auto;
+    text-align:center;
+    width:100%;
+}
+
+/* VIEWER SECTION */
+
+.viewer-section{
+    min-height:85vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:50px;
+    padding:70px 8%;
+    background:#F8FAFC;
+}
+
+/* 3D BOX */
+
+#viewer3d{
+    width:500px;
+    height:500px;
+    background:white;
+    border-radius:28px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.08);
+}
+
+/* VIEWER INFO */
+
+.viewer-info{
+    max-width:450px;
+}
+
+.viewer-info h1{
+    font-size:48px;
+    margin-bottom:20px;
+    color:#1E293B;
+}
+
+.viewer-info p{
+    font-size:18px;
+    line-height:1.8;
+    color:#475569;
+    margin-bottom:30px;
+}
+
+/* QUIZ */
+
+.quiz{
+    padding:80px 8%;
+    background:#EEF2FF;
+}
+
+.quiz-box{
+    background:white;
+    max-width:700px;
+    margin:auto;
+    padding:40px;
+    border-radius:28px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+.quiz-box h3{
+    font-size:28px;
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.option{
+    background:#F8FAFC;
+    padding:16px;
+    border-radius:14px;
+    margin-bottom:16px;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:16px;
+}
+
+.option:hover{
+    background:#DDE7FF;
+}
+
+/* FOOTER */
+
+footer{
+    padding:30px;
+    text-align:center;
+    background:white;
+    font-size:16px;
+    color:#64748B;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .viewer-section{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    #viewer3d{
+        width:100%;
+        max-width:500px;
+        height:420px;
+    }
+
+}
+
+@media(max-width:900px){
+
+    nav{
+        flex-direction:column;
+        gap:16px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:16px;
+    }
+
+    .hero-text h1{
+        font-size:42px;
+    }
+
+    .section-title{
+        font-size:34px;
+    }
+
+    .card{
+        min-height:auto;
+    }
+
+    .viewer-info h1{
+        font-size:40px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .logo{
+        font-size:26px;
+    }
+
+    nav ul li a{
+        font-size:14px;
+    }
+
+    .hero-text h1{
+        font-size:34px;
+    }
+
+    .hero-text p{
+        font-size:16px;
+    }
+
+    .btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .card h3{
+        font-size:28px;
+    }
+
+    .card h4{
+        font-size:22px;
+    }
+
+    .card p,
+    .card ul li{
+        font-size:15px;
+    }
+
+    #viewer3d{
+        height:320px;
+    }
+
+    .viewer-info h1{
+        font-size:32px;
+    }
+
+    .viewer-info p{
+        font-size:16px;
+    }
+
+}

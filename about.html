@@ -1,0 +1,320 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | HydroChem 3D</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.about-hero{
+    min-height:90vh;
+    background:linear-gradient(135deg,#EEF2FF,#F8FAFC);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:80px 8%;
+}
+
+.about-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:60px;
+    flex-wrap:wrap;
+}
+
+.about-image img{
+    width:420px;
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-20px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+.about-content{
+    max-width:650px;
+}
+
+.about-tag{
+    display:inline-block;
+    padding:10px 22px;
+    background:#635BFF;
+    color:white;
+    border-radius:30px;
+    margin-bottom:25px;
+    font-size:15px;
+}
+
+.about-content h1{
+    font-size:56px;
+    margin-bottom:25px;
+    line-height:1.2;
+    color:#1E293B;
+}
+
+.about-content h1 span{
+    color:#635BFF;
+}
+
+.about-content p{
+    font-size:18px;
+    line-height:1.9;
+    color:#475569;
+    margin-bottom:30px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-top:40px;
+}
+
+.info-card{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.06);
+    transition:0.3s;
+}
+
+.info-card:hover{
+    transform:translateY(-8px);
+}
+
+.info-card h3{
+    font-size:22px;
+    margin-bottom:15px;
+    color:#635BFF;
+}
+
+.info-card p{
+    font-size:16px;
+    margin:0;
+    line-height:1.7;
+}
+
+.team-section{
+    padding:100px 8%;
+    background:white;
+}
+
+.section-title{
+    text-align:center;
+    font-size:46px;
+    margin-bottom:60px;
+    color:#1E293B;
+}
+
+.team-box{
+    max-width:1000px;
+    margin:auto;
+    background:#EEF2FF;
+    padding:50px;
+    border-radius:35px;
+    text-align:center;
+}
+
+.team-box h2{
+    font-size:38px;
+    margin-bottom:20px;
+    color:#1E293B;
+}
+
+.team-box p{
+    font-size:18px;
+    line-height:1.9;
+    color:#475569;
+}
+
+footer{
+    padding:35px;
+    text-align:center;
+    background:#1E293B;
+    color:white;
+    font-size:16px;
+}
+
+@media(max-width:900px){
+
+    .about-content{
+        text-align:center;
+    }
+
+    .about-content h1{
+        font-size:42px;
+    }
+
+    .about-image img{
+        width:300px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .about-content h1{
+        font-size:34px;
+    }
+
+    .about-content p{
+        font-size:16px;
+    }
+
+    .section-title{
+        font-size:34px;
+    }
+
+    .team-box{
+        padding:35px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+HydroChem 3D
+</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="materi.html">Materi</a></li>
+<li><a href="view.html">3D Viewer</a></li>
+<li><a href="quiz.html">Quiz</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO ABOUT -->
+
+<section class="about-hero">
+
+<div class="about-container">
+
+<div class="about-image">
+
+<img src="https://cdn-icons-png.flaticon.com/512/2784/2784487.png">
+
+</div>
+
+<div class="about-content">
+
+<div class="about-tag">
+Website Edukasi Kimia Modern
+</div>
+
+<h1>
+Belajar Kimia Jadi <span>Lebih Interaktif</span>
+</h1>
+
+<p>
+HydroChem 3D merupakan website pembelajaran kimia modern yang dirancang untuk membantu siswa memahami struktur hidrokarbon aromatik melalui visualisasi molekul 3D yang interaktif, materi pembelajaran lengkap, dan quiz edukatif.
+</p>
+
+<p>
+Website ini dibuat agar proses belajar kimia terasa lebih menyenangkan, visual, dan mudah dipahami oleh siswa maupun mahasiswa.
+</p>
+
+<div class="info-grid">
+
+<div class="info-card">
+<h3>3D Viewer</h3>
+<p>
+Menampilkan struktur molekul secara realistis dan dapat diputar secara interaktif.
+</p>
+</div>
+
+<div class="info-card">
+<h3>Materi Lengkap</h3>
+<p>
+Berisi penjelasan hidrokarbon aromatik dengan bahasa yang mudah dipahami.
+</p>
+</div>
+
+<div class="info-card">
+<h3>Quiz Interaktif</h3>
+<p>
+Tersedia latihan soal lengkap beserta pembahasan untuk meningkatkan pemahaman siswa.
+</p>
+</div>
+
+<div class="info-card">
+<h3>Modern UI</h3>
+<p>
+Menggunakan tampilan modern agar pengalaman belajar menjadi lebih nyaman.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TEAM -->
+
+<section class="team-section">
+
+<h2 class="section-title">
+Tujuan Website
+</h2>
+
+<div class="team-box">
+
+<h2>
+Mengapa HydroChem 3D Dibuat?
+</h2>
+
+<p>
+HydroChem 3D dibuat sebagai media pembelajaran digital untuk membantu siswa memahami konsep struktur hidrokarbon aromatik yang sering dianggap sulit dalam pembelajaran kimia organik.
+</p>
+
+<br>
+
+<p>
+Dengan adanya visualisasi 3D, siswa dapat melihat bentuk molekul secara nyata sehingga proses belajar menjadi lebih efektif, menarik, dan interaktif.
+</p>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+© 2026 HydroChem 3D | Interactive Chemistry Learning Website
+</footer>
+
+</body>
+</html>
+```

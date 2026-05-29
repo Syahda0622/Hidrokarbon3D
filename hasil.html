@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hasil Quiz</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#EEF2FF;
+}
+
+.result-box{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:30px;
+    margin-top:60px;
+    margin-bottom:60px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.correct{
+    color:green;
+}
+
+.wrong{
+    color:red;
+}
+
+.review{
+    background:#F8FAFC;
+    padding:25px;
+    border-radius:20px;
+    margin-top:25px;
+}
+
+.btn{
+    margin-top:30px;
+    padding:15px 30px;
+    border:none;
+    border-radius:15px;
+    background:#635BFF;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.btn:hover{
+    opacity:0.9;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="result-box">
+
+<h1 style="text-align:center;">
+Hasil Quiz
+</h1>
+
+<h2 id="scoreText" style="text-align:center;margin-top:20px;"></h2>
+
+<div style="text-align:center;">
+<button class="btn" onclick="showReview()">
+Lanjut ke Pembahasan Soal
+</button>
+</div>
+
+<div id="reviewSection"></div>
+
+</div>
+
+<script>
+
+const results = JSON.parse(localStorage.getItem("quizResults"));
+
+const score = localStorage.getItem("quizScore");
+
+document.getElementById("scoreText").innerHTML =
+`
+Jawaban Benar: ${score} / 20
+<br><br>
+Jawaban Salah: ${20-score}
+`;
+
+function showReview(){
+
+const section = document.getElementById("reviewSection");
+
+section.innerHTML = "";
+
+results.forEach((item,index)=>{
+
+section.innerHTML += `
+
+<div class="review">
+
+<h3>${index+1}. ${item.question}</h3>
+
+<p>
+Jawaban Kamu:
+<b class="${item.correct ? 'correct' : 'wrong'}">
+${item.userAnswer}
+</b>
+</p>
+
+<p>
+Jawaban Benar:
+<b class="correct">
+${item.correctAnswer}
+</b>
+</p>
+
+<p>
+${item.correct
+? "Jawaban kamu benar 🎉"
+: "Jawaban kamu salah ❌"}
+</p>
+
+<p>
+<b>Pembahasan:</b>
+${item.explanation}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
+

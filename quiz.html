@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz HydroChem 3D</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.quiz{
+    padding:80px 8%;
+    background:#EEF2FF;
+    min-height:100vh;
+}
+
+.quiz-box{
+    background:white;
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+    border-radius:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question{
+    margin-bottom:40px;
+}
+
+.question h3{
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+.option{
+    background:#F8FAFC;
+    padding:18px;
+    border-radius:15px;
+    margin-bottom:15px;
+    cursor:pointer;
+    transition:0.3s;
+    border:2px solid transparent;
+    display:block;
+}
+
+.option:hover{
+    background:#DDE7FF;
+}
+
+.option input{
+    margin-right:10px;
+}
+
+.submit-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    background:#635BFF;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    opacity:0.9;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">HydroChem 3D</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="materi.html">Materi</a></li>
+<li><a href="view.html">3D Viewer</a></li>
+<li><a href="quiz.html">Quiz</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+
+</nav>
+
+<section class="quiz">
+
+<div class="quiz-box">
+
+<h1 style="text-align:center;margin-bottom:50px;">
+Quiz Hidrokarbon Aromatik
+</h1>
+
+<form id="quizForm"></form>
+
+<button class="submit-btn" onclick="submitQuiz()">
+Submit Quiz
+</button>
+
+</div>
+
+</section>
+
+<script>
+
+const questions = [
+
+{
+q:"Apa rumus kimia Benzena?",
+options:["C6H6","CH4","H2O","C2H5OH"],
+answer:"C6H6",
+explanation:"Benzena memiliki 6 atom karbon dan 6 atom hidrogen sehingga rumusnya C6H6."
+},
+
+{
+q:"Benzena termasuk senyawa?",
+options:["Alkana","Aromatik","Alkohol","Asam"],
+answer:"Aromatik",
+explanation:"Benzena adalah senyawa aromatik."
+},
+
+{
+q:"Toluena digunakan sebagai?",
+options:["Pelarut","Pupuk","Gas","Sabun"],
+answer:"Pelarut",
+explanation:"Toluena digunakan sebagai pelarut industri."
+},
+
+{
+q:"Fenol digunakan sebagai?",
+options:["Antiseptik","Bensin","Gas LPG","Pewarna"],
+answer:"Antiseptik",
+explanation:"Fenol digunakan dalam antiseptik."
+},
+
+{
+q:"Berapa jumlah atom karbon benzena?",
+options:["4","5","6","8"],
+answer:"6",
+explanation:"Benzena memiliki 6 atom karbon."
+},
+
+{
+q:"Anilina digunakan dalam industri?",
+options:["Pewarna","Bensin","Air","Sabun"],
+answer:"Pewarna",
+explanation:"Anilina digunakan membuat zat pewarna."
+},
+
+{
+q:"Ikatan pada benzena bersifat?",
+options:["Tunggal","Rangkap 3","Resonansi","Ion"],
+answer:"Resonansi",
+explanation:"Benzena memiliki elektron terdelokalisasi."
+},
+
+{
+q:"Xilena memiliki jumlah karbon?",
+options:["6","7","8","10"],
+answer:"8",
+explanation:"Xilena memiliki rumus C8H10."
+},
+
+{
+q:"Aspirin digunakan sebagai?",
+options:["Obat nyeri","Bahan bakar","Pupuk","Pewarna"],
+answer:"Obat nyeri",
+explanation:"Aspirin adalah obat anti nyeri."
+},
+
+{
+q:"Bentuk benzena adalah?",
+options:["Segitiga","Persegi","Heksagonal","Linear"],
+answer:"Heksagonal",
+explanation:"Benzena berbentuk cincin heksagonal."
+},
+
+{
+q:"Senyawa aromatik memiliki?",
+options:["Cincin benzena","Air","Logam","Ion"],
+answer:"Cincin benzena",
+explanation:"Ciri utama senyawa aromatik adalah cincin benzena."
+},
+
+{
+q:"CH4 adalah rumus dari?",
+options:["Metana","Benzena","Fenol","Toluena"],
+answer:"Metana",
+explanation:"CH4 adalah metana."
+},
+
+{
+q:"C2H5OH adalah?",
+options:["Etanol","Fenol","Benzena","Xilena"],
+answer:"Etanol",
+explanation:"C2H5OH adalah etanol."
+},
+
+{
+q:"H2O merupakan?",
+options:["Air","Benzena","Fenol","Aspirin"],
+answer:"Air",
+explanation:"H2O adalah air."
+},
+
+{
+q:"Fenol memiliki gugus?",
+options:["OH","NH2","COOH","Cl"],
+answer:"OH",
+explanation:"Fenol memiliki gugus hidroksil."
+},
+
+{
+q:"Anilina memiliki gugus?",
+options:["NH2","OH","COOH","CHO"],
+answer:"NH2",
+explanation:"Anilina memiliki gugus amino."
+},
+
+{
+q:"Aspirin termasuk senyawa?",
+options:["Obat","Gas","Pupuk","Logam"],
+answer:"Obat",
+explanation:"Aspirin merupakan senyawa obat."
+},
+
+{
+q:"Benzena ditemukan dalam?",
+options:["Minyak bumi","Air laut","Udara","Es"],
+answer:"Minyak bumi",
+explanation:"Benzena terdapat dalam minyak bumi."
+},
+
+{
+q:"Ikatan benzena membuat senyawa menjadi?",
+options:["Stabil","Mudah pecah","Padat","Ionik"],
+answer:"Stabil",
+explanation:"Resonansi membuat benzena stabil."
+},
+
+{
+q:"Hidrokarbon aromatik dipelajari dalam?",
+options:["Kimia organik","Fisika","Biologi","Geografi"],
+answer:"Kimia organik",
+explanation:"Hidrokarbon aromatik dipelajari di kimia organik."
+}
+
+];
+
+const form = document.getElementById("quizForm");
+
+questions.forEach((item,index)=>{
+
+const div = document.createElement("div");
+
+div.classList.add("question");
+
+div.innerHTML = `
+<h3>${index+1}. ${item.q}</h3>
+
+${item.options.map(option=>`
+<label class="option">
+<input type="radio" name="q${index}" value="${option}">
+${option}
+</label>
+`).join("")}
+`;
+
+form.appendChild(div);
+
+});
+
+function submitQuiz(){
+
+let score = 0;
+let results = [];
+
+questions.forEach((item,index)=>{
+
+const selected = document.querySelector(`input[name="q${index}"]:checked`);
+
+const answer = selected ? selected.value : "Tidak dijawab";
+
+const correct = answer === item.answer;
+
+if(correct){
+score++;
+}
+
+results.push({
+question:item.q,
+userAnswer:answer,
+correctAnswer:item.answer,
+correct:correct,
+explanation:item.explanation
+});
+
+});
+
+localStorage.setItem("quizResults",JSON.stringify(results));
+localStorage.setItem("quizScore",score);
+
+window.location.href = "hasil.html";
+
+}
+
+</script>
+
+</body>
+</html>
+
